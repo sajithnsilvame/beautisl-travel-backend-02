@@ -15,12 +15,10 @@ export class AuthRepository implements IAuthRepository {
    * @returns 
    */
   async createUser(userData: {
-    firstName: string;
-    lastName: string;
-    username: string;
+    fullname: string;
     email: string;
     password: string;
-    mobile: string;
+    mobile?: string;
     roleId: number;
   }): Promise<User> {
     return await User.create(userData);

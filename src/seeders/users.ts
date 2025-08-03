@@ -10,9 +10,7 @@ export default {
 
     await queryInterface.bulkInsert('users', [
       {
-        firstName: 'John',
-        lastName: 'Smith',
-        username: 'superadmin',
+        fullname: 'John Smith',
         email: 'superadmin@example.com',
         password: hashedPassword1,
         mobile: '0712457937',
@@ -21,9 +19,7 @@ export default {
         updatedAt: new Date(),
       },
       {
-        firstName: 'John',
-        lastName: 'Smith',
-        username: 'admin',
+        fullname: 'John Smith',
         email: 'admin@example.com',
         password: hashedPassword2,
         mobile: '0712457937',
@@ -32,9 +28,7 @@ export default {
         updatedAt: new Date(),
       },
       {
-        firstName: 'John',
-        lastName: 'Smith',
-        username: 'manager',
+        fullname: 'John Smith',
         email: 'manager@example.com',
         password: hashedPassword3,
         mobile: '0712457937',
@@ -43,9 +37,7 @@ export default {
         updatedAt: new Date(),
       },
       {
-        firstName: 'John',
-        lastName: 'Smith',
-        username: 'user',
+        fullname: 'John Smith',
         email: 'user@example.com',
         password: hashedPassword4,
         mobile: '0712457937',

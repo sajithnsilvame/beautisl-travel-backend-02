@@ -4,12 +4,10 @@ import Role from '@/models/role.model';
 
 export class User extends Model {
   public id!: number;
-  public firstName!: string;
-  public lastName!: string;
-  public username!: string;
+  public fullname!: string;
   public email!: string;
   public password!: string;
-  public mobile!: string;
+  public mobile?: string;
   public roleId!: number;
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
@@ -26,22 +24,13 @@ User.init(
       autoIncrement: true,
       allowNull: false,
     },
-    firstName: {
+    fullname: {
       type: DataTypes.STRING,
       allowNull: false,
-    },
-    lastName: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    username: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
       validate: {
         len: {
-          args: [3, 50],
-          msg: 'Username must be between 3 and 50 characters long.',
+          args: [2, 100],
+          msg: 'Full name must be between 2 and 100 characters long.',
         },
       },
     },
@@ -70,6 +59,11 @@ User.init(
         len: {
           args: [10, 15],
           msg: 'Mobile number must be between 10 and 15 characters long.',
+        },
+        isValidMobile(value: string) {
+          if (value && !/^\+?[\d\s\-\(\)]+$/.test(value)) {
+            throw new Error('Mobile number format is invalid.');
+          }
         },
       },
     },

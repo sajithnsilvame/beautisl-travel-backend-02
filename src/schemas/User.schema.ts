@@ -1,31 +1,28 @@
 import Joi from "joi";
 
 export const UserRegisterSchema = Joi.object({
-    firstName: Joi.string().required().messages({
-        'string.empty': 'First name is required.',
-    }),
-    lastName: Joi.string().optional().messages({
-        'string.base': 'Last name must be a string.',
+    fullname: Joi.string().min(2).max(100).required().messages({
+        'string.empty': 'Full name is required.',
+        'string.min': 'Full name must be at least 2 characters long.',
+        'string.max': 'Full name cannot exceed 100 characters.',
     }),
     email: Joi.string().email().required().messages({
         'string.email': 'Invalid email format.',
         'string.empty': 'Email is required.',
     }),
-    username: Joi.string().min(3).max(50).required().messages({
-        'string.empty': 'Username is required.',
-        'string.min': 'Username must be at least 3 characters long.',
-        'string.max': 'Username cannot exceed 50 characters.',
-    }),
-    password: Joi.string().min(8).required().messages({
+    password: Joi.string().min(6).required().messages({
         'string.empty': 'Password is required.',
-        'string.min': 'Password must be at least 8 characters long.',
+        'string.min': 'Password must be at least 6 characters long.',
     }),
     mobile: Joi.string()
-        .length(10)
-        .pattern(/^[0-9]+$/) 
+        .min(10)
+        .max(15)
+        .pattern(/^\+?[\d\s\-\(\)]+$/) 
         .optional()
+        .allow('')
         .messages({
-            'string.length': 'Mobile number must be exactly 10 digits.',
-            'string.pattern.base': 'Mobile number must contain only digits.',
+            'string.min': 'Mobile number must be at least 10 characters long.',
+            'string.max': 'Mobile number cannot exceed 15 characters.',
+            'string.pattern.base': 'Mobile number format is invalid. Only digits, spaces, dashes, parentheses, and + are allowed.',
         }),
 });

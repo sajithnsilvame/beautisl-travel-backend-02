@@ -9,7 +9,7 @@ const authRepository = new AuthRepository();
 interface AuthenticatedRequest extends Request {
   user?: {
     id: number;
-    username: string;
+    fullname: string;
     email: string;
     roleId: number;
     roleName: string;
@@ -57,7 +57,7 @@ export const Authenticated = async (
     // Attach user details to the request object
     req.user = {
       id: user.id,
-      username: user.username,
+      fullname: user.fullname,
       email: user.email,
       roleId: user.roleId,
       roleName: user.Role?.role_name ?? '', // Use the correct field name (`role_name`)

@@ -8,7 +8,7 @@ interface AuthenticatedRequest extends Request {
   user?: {
     id: number;
     email: string;
-    username: string;
+    fullname: string;
   };
 }
 @injectable()
@@ -26,21 +26,20 @@ export class AuthController {
     Logger.info(`Received registration request from IP: ${req.ip}, Payload: ${JSON.stringify(req.body)}`);
 
     try {
-      const { firstName, lastName, username, email, password, mobile } = req.body;
-      const user = await this.authService.register(firstName, lastName, username, email, password, mobile);
+      const { fullname, email, password, mobile } = req.body;
+      const user = await this.authService.register(fullname, email, password, mobile);
 
       Logger.info(`Registration successful for user: ${user.email}`);
       res.status(201).json({
         status: true,
         data: {
           id: user.id,
-          firstName: user.firstName,
-          lastName: user.lastName,
+          fullname: user.fullname,
           email: user.email,
-          username: user.username,
           mobile: user.mobile,
           roleId: user.roleId,
         },
+        message: "User registered successfully",
       });
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : "An unexpected error occurred";

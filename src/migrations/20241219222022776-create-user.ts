@@ -9,13 +9,9 @@ export default {
         autoIncrement: true,
         allowNull: false,
       },
-      firstName: {
+      fullname: {
         type: DataTypes.STRING,
         allowNull: false,
-      },
-      lastName: {
-        type: DataTypes.STRING,
-        allowNull: true,
       },
       roleId: {
         type: DataTypes.INTEGER,
@@ -26,14 +22,6 @@ export default {
         },
         onUpdate: 'CASCADE',
         onDelete: 'RESTRICT'
-      },
-      username: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true,
-        validate: {
-          len: [3, 50], // Username length between 3 and 50 characters
-        },
       },
       email: {
         type: DataTypes.STRING,

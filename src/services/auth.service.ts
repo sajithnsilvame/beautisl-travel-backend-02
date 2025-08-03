@@ -13,22 +13,18 @@ export class AuthService {
 
   /**
    * Function: Register a new user
-   * @param firstName 
-   * @param lastName 
-   * @param username 
+   * @param fullname 
    * @param email 
    * @param password 
    * @param mobile 
    * @returns 
    */
   async register(
-    firstName: string,
-    lastName: string,
-    username: string,
+    fullname: string,
     email: string,
     password: string,
-    mobile: string
-  ): Promise<{ id: number; firstName: string; lastName: string; email: string; username: string; mobile: string; roleId: number }> {
+    mobile?: string
+  ): Promise<{ id: number; fullname: string; email: string; mobile?: string; roleId: number }> {
     const existingUser = await this.authRepository.findUserByEmail(email);
     if (existingUser) {
       throw new Error("User with this email already exists");
@@ -38,9 +34,7 @@ export class AuthService {
     const defaultRoleId = 4; 
 
     const user = await this.authRepository.createUser({
-      firstName,
-      lastName,
-      username,
+      fullname,
       email,
       password: hashedPassword,
       mobile,
@@ -49,16 +43,14 @@ export class AuthService {
 
     return {
       id: user.id,
-      firstName: user.firstName,
-      lastName: user.lastName,
+      fullname: user.fullname,
       email: user.email,
-      username: user.username,
       mobile: user.mobile,
       roleId: user.roleId,
     };
   }
 
-  async login(email: string, password: string): Promise<{ token: string; user: { id: number; firstName: string; lastName: string; email: string; username: string; mobile: string; roleId: number } }> {
+  async login(email: string, password: string): Promise<{ token: string; user: { id: number; fullname: string; email: string; mobile?: string; roleId: number } }> {
     const user = await this.authRepository.findUserByEmail(email);
     if (!user) {
       throw new Error("Invalid email or password");
@@ -80,10 +72,8 @@ export class AuthService {
       token,
       user: {
         id: user.id,
-        firstName: user.firstName,
-        lastName: user.lastName,
+        fullname: user.fullname,
         email: user.email,
-        username: user.username,
         mobile: user.mobile,
         roleId: user.roleId
       },
@@ -105,19 +95,15 @@ export class AuthService {
 
     return {
       id: user.id,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      mobile: user.mobile,
+      fullname: user.fullname,
       email: user.email,
-      username: user.username,
+      mobile: user.mobile,
       roleId: user.roleId,
     };
   }
 
   async updateUserDetails(userId: number, updateData: {
-  firstName?: string;
-  lastName?: string;
-  username?: string;
+  fullname?: string;
   mobile?: string;
   email?: string;
 }): Promise<any> {
@@ -129,10 +115,8 @@ export class AuthService {
 
   return {
     id: updatedUser.id,
-    firstName: updatedUser.firstName,
-    lastName: updatedUser.lastName,
+    fullname: updatedUser.fullname,
     email: updatedUser.email,
-    username: updatedUser.username,
     mobile: updatedUser.mobile,
     roleId: updatedUser.roleId,
   };

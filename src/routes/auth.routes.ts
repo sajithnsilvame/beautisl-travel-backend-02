@@ -15,26 +15,41 @@ const authController = container.resolve(AuthController);
  *   post:
  *     tags: [User]
  *     summary: Register a new user
- *     description: Register a new user with default role as 'user'
+ *     description: Register a new user with full name, email, password, and optional mobile number
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
  *             type: object
+ *             required:
+ *               - fullname
+ *               - email
+ *               - password
  *             properties:
- *               firstName:
+ *               fullname:
  *                 type: string
- *               lastName:
- *                 type: string
- *               username:
- *                 type: string
+ *                 minLength: 2
+ *                 maxLength: 100
+ *                 example: "John Doe"
+ *                 description: User's full name
  *               email:
  *                 type: string
+ *                 format: email
+ *                 example: "john.doe@example.com"
+ *                 description: User's email address
  *               password:
  *                 type: string
+ *                 minLength: 6
+ *                 example: "password123"
+ *                 description: User's password (minimum 6 characters)
  *               mobile:
  *                 type: string
+ *                 minLength: 10
+ *                 maxLength: 15
+ *                 pattern: "^\\+?[\\d\\s\\-\\(\\)]+$"
+ *                 example: "+1234567890"
+ *                 description: User's mobile number (optional)
  *     responses:
  *       201:
  *         description: User registered successfully
@@ -43,25 +58,43 @@ const authController = container.resolve(AuthController);
  *             schema:
  *               type: object
  *               properties:
- *                 success:
+ *                 status:
  *                   type: boolean
+ *                   example: true
  *                 data:
  *                   type: object
  *                   properties:
  *                     id:
  *                       type: integer
- *                     firstName:
+ *                       example: 1
+ *                     fullname:
  *                       type: string
- *                     lastName:
- *                       type: string
+ *                       example: "John Doe"
  *                     email:
  *                       type: string
- *                     username:
- *                       type: string
+ *                       example: "john.doe@example.com"
  *                     mobile:
  *                       type: string
+ *                       example: "+1234567890"
  *                     roleId:
  *                       type: integer
+ *                       example: 4
+ *                 message:
+ *                   type: string
+ *                   example: "User registered successfully"
+ *       400:
+ *         description: Registration failed due to validation error or duplicate email
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: "User with this email already exists"
  */
 router.post('/register', authLimiter, validateRequest(UserRegisterSchema), authController.register.bind(authController));
 
@@ -108,7 +141,7 @@ router.post('/register', authLimiter, validateRequest(UserRegisterSchema), authC
  *                           type: integer
  *                         email:
  *                           type: string
- *                         username:
+ *                         fullname:
  *                           type: string
  *                         mobile:
  *                           type: string
@@ -158,7 +191,7 @@ router.post('/logout', Authenticated, authController.logout.bind(authController)
  *                       type: integer
  *                     email:
  *                       type: string
- *                     username:
+ *                     fullname:
  *                       type: string
  *                     roleId:
  *                       type: integer
@@ -181,12 +214,9 @@ router.get('/user', Authenticated, authController.getAuthUser.bind(authControlle
  *           schema:
  *             type: object
  *             properties:
- *               firstName:
+ *               fullname:
  *                 type: string
- *               lastName:
- *                 type: string
- *               username:
- *                 type: string
+ *                 description: User's full name
  *               email:
  *                 type: string
  *               mobile:
@@ -206,13 +236,9 @@ router.get('/user', Authenticated, authController.getAuthUser.bind(authControlle
  *                   properties:
  *                     id:
  *                       type: integer
- *                     firstName:
- *                       type: string
- *                     lastName:
+ *                     fullname:
  *                       type: string
  *                     email:
- *                       type: string
- *                     username:
  *                       type: string
  *                     mobile:
  *                       type: string
