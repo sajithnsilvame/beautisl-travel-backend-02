@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs";
-import { generateToken } from "../utils/jwt";
-import { AuthRepository } from "../repositories/auth.repository";
+import { generateToken } from "@/utils/jwt";
+import { AuthRepository } from "@/repositories/auth.repository";
 import { add } from 'date-fns';
 import { injectable, inject } from "tsyringe";
 

@@ -10,7 +10,25 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "outDir": "./dist",
-    "rootDir": "./src"
+    "rootDir": "./src",
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"],
+      "@/config/*": ["src/config/*"],
+      "@/controllers/*": ["src/controllers/*"],
+      "@/middlewares/*": ["src/middlewares/*"],
+      "@/models/*": ["src/models/*"],
+      "@/repositories/*": ["src/repositories/*"],
+      "@/routes/*": ["src/routes/*"],
+      "@/services/*": ["src/services/*"],
+      "@/utils/*": ["src/utils/*"],
+      "@/types/*": ["src/types/*"],
+      "@/schemas/*": ["src/schemas/*"],
+      "@/lib/*": ["src/lib/*"],
+      "@/assets/*": ["src/assets/*"],
+      "@/enums/*": ["src/enums/*"],
+
+    }
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "**/*.spec.ts"]

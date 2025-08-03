@@ -1,7 +1,7 @@
 import { Request } from "express";
-import { verifyToken } from "../utils/jwt";
-import { AuthService } from "../services/auth.service";
-import { UnauthorizedError } from "./errors/customErrors";
+import { verifyToken } from "@/utils/jwt";
+import { AuthService } from "@/services/auth.service";
+import { UnauthorizedError } from "@/utils/errors/customErrors";
 import { injectable, inject } from "tsyringe";
 
 

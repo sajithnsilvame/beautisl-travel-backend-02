@@ -3,8 +3,8 @@ import path from 'path';
 
 const generateRepositoryFile = (RepositoryName: string) => {
     const repositoryContent = `
-import ${RepositoryName} from "../models/${RepositoryName.toLowerCase()}.model";
-import { I${RepositoryName}Repository } from "../types/repo/I${RepositoryName}Repository";
+import ${RepositoryName} from "@/models/${RepositoryName.toLowerCase()}.model";
+import { I${RepositoryName}Repository } from "@/types/repo/I${RepositoryName}Repository";
     
 export class ${RepositoryName}Repository implements I${RepositoryName}Repository {
     
@@ -46,7 +46,7 @@ export class ${RepositoryName}Repository implements I${RepositoryName}Repository
 
 const generateRepositoryInterfaceFile = (RepositoryName: string) => {
     const repositoryInterfaceContent = `
-import ${RepositoryName} from "../../models/${RepositoryName.toLowerCase()}.model";
+import ${RepositoryName} from "@/models/${RepositoryName.toLowerCase()}.model";
         
 export interface I${RepositoryName}Repository {
     create${RepositoryName}(${RepositoryName.toLowerCase()}: Partial<${RepositoryName}>): Promise<${RepositoryName}>;

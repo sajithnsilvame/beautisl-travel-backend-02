@@ -1,6 +1,6 @@
 import { Model, DataTypes } from 'sequelize';
-import sequelize from '../config/database';
-import Role from './role.model';
+import sequelize from '@/config/database';
+import Role from '@/models/role.model';
 
 export class User extends Model {
   public id!: number;

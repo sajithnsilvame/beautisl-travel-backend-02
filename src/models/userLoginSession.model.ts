@@ -1,6 +1,6 @@
 import { Model, DataTypes } from 'sequelize';
-import sequelize from '../config/database';
-import { User } from './user.model';
+import sequelize from '@/config/database';
+import { User } from '@/models/user.model';
 
 export class UserLoginSession extends Model {
   public id!: number;

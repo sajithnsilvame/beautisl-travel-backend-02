@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import authRoutes from '../auth.routes';
-import userRoleRoutes from '../roles.routes';
+import authRoutes from '@/routes/auth.routes';
+import userRoleRoutes from '@/routes/roles.routes';
 export function getV1Routes(router: Router): void {
     
     

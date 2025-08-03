@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { AuthService } from "../services/auth.service";
-import Logger from "../utils/logger";
+import { AuthService } from "@/services/auth.service";
+import Logger from "@/utils/logger";
 import { injectable, inject } from "tsyringe";
 
 

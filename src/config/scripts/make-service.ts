@@ -4,8 +4,8 @@ import path from 'path';
 const generateServiceFile = (ServiceName: string) => {
     const serviceContent = `
 import { injectable, inject } from "tsyringe";
-import { ${ServiceName}Repository } from "../repositories/${ServiceName.toLowerCase()}.repository";
-import ${ServiceName} from "../models/${ServiceName.toLowerCase()}.model";
+import { ${ServiceName}Repository } from "@/repositories/${ServiceName.toLowerCase()}.repository";
+import ${ServiceName} from "@/models/${ServiceName.toLowerCase()}.model";
 
 @injectable()
 export class ${ServiceName}Service {

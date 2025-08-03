@@ -1,7 +1,7 @@
 import winston from 'winston';
 import DailyRotateFile from 'winston-daily-rotate-file';
 import path from 'path';
-import appConfig from '../config/app.config';
+import appConfig from '@/config/app.config';
 
 const levels = {
   error: 0,

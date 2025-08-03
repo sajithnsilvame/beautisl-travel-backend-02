@@ -1,5 +1,5 @@
 import swaggerJsdoc from "swagger-jsdoc";
-import appConfig from "./app.config";
+import appConfig from "@/config/app.config";
 
 const { app } = appConfig;
 

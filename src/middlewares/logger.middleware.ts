@@ -1,6 +1,6 @@
 import morgan from 'morgan';
-import Logger from '../utils/logger';
-import appConfig from '../config/app.config';
+import Logger from '@/utils/logger';
+import appConfig from '@/config/app.config';
 
 const stream = {
   write: (message: string) => Logger.http(message.trim()),

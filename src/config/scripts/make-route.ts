@@ -6,8 +6,8 @@ const generateRouteFile = (routeName: string) => {
   const routeContent = `
 import { Router } from "express";
 import { container } from "tsyringe";
-import { ${routeName}Controller } from "../controllers/${routeName.toLowerCase()}.controller";
-import { Authenticated } from '../middlewares/auth.middleware';
+import { ${routeName}Controller } from "@/controllers/${routeName.toLowerCase()}.controller";
+import { Authenticated } from '@/middlewares/auth.middleware';
 
 const router = Router();
 const ${routeName.toLowerCase()}Controller = container.resolve(${routeName}Controller);

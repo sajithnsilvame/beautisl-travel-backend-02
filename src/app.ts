@@ -1,17 +1,18 @@
 import "reflect-metadata";
+import "module-alias/register";
 import express from 'express';
 import { json } from 'body-parser';
 import swaggerUi from 'swagger-ui-express';
-import swaggerDocument from './config/swagger';
-import routes from './routes/index';
-import connectToDatabase from './config/database';
-import { errorHandler } from './middlewares/error.middleware';
-import appConfig from './config/app.config';
+import swaggerDocument from '@/config/swagger';
+import routes from '@/routes/index';
+import connectToDatabase from '@/config/database';
+import { errorHandler } from '@/middlewares/error.middleware';
+import appConfig from '@/config/app.config';
 import helmet from 'helmet';
 import morgan from 'morgan';
-import morganMiddleware from './middlewares/logger.middleware';
+import morganMiddleware from '@/middlewares/logger.middleware';
 import cors from 'cors';
-import { apiLimiter } from "./middlewares/rateLimit.middleware";
+import { apiLimiter } from "@/middlewares/rateLimit.middleware";
 
 const app = express();
 const { app: appSettings, cors: corsSettings, swagger } = appConfig;

@@ -1,5 +1,5 @@
 import rateLimit from 'express-rate-limit';
-import appConfig from '../config/app.config';
+import appConfig from '@/config/app.config';
 
 const { rateLimit: rateLimitConfig } = appConfig;
 

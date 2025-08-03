@@ -1,8 +1,8 @@
 import { Router } from "express";
 import { container } from "tsyringe";
-import { UserRoleController } from "../controllers/userRole.controller";
-import { Authenticated } from '../middlewares/auth.middleware';
-import { canAccess } from "../middlewares/checkRole.middleware";
+import { UserRoleController } from "@/controllers/userRole.controller";
+import { Authenticated } from '@/middlewares/auth.middleware';
+import { canAccess } from "@/middlewares/checkRole.middleware";
 
 const router = Router();
 const userRoleController = container.resolve(UserRoleController);

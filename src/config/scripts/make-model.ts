@@ -36,7 +36,7 @@ const relativeModelFilePath = path.relative(process.cwd(), modelFilePath);
     // Model template
     const modelTemplate = `
 import { Model, DataTypes } from 'sequelize';
-import sequelize from '../config/database';
+import sequelize from '@/config/database';
 
 export class ${modelName} extends Model {}
 

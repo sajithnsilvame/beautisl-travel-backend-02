@@ -1,7 +1,7 @@
-import Role from "../models/role.model";
-import { User } from "../models/user.model";
-import { UserLoginSession } from "../models/userLoginSession.model";
-import { IAuthRepository } from "../types/repo/IAuthRepository";
+import Role from "@/models/role.model";
+import { User } from "@/models/user.model";
+import { UserLoginSession } from "@/models/userLoginSession.model";
+import { IAuthRepository } from "@/types/repo/IAuthRepository";
 import { Op } from "sequelize";
 import bcrypt from 'bcryptjs';
 

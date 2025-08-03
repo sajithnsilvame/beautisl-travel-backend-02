@@ -1,10 +1,10 @@
 import { Router } from 'express';
-import AuthController from '../controllers/auth.controller';
+import AuthController from '@/controllers/auth.controller';
 import { container } from 'tsyringe';
-import { Authenticated } from '../middlewares/auth.middleware';
-import { authLimiter } from '../middlewares/rateLimit.middleware';
-import { validateRequest } from '../middlewares/requestValidate.middleware';
-import { UserRegisterSchema } from '../schemas/User.schema';
+import { Authenticated } from '@/middlewares/auth.middleware';
+import { authLimiter } from '@/middlewares/rateLimit.middleware';
+import { validateRequest } from '@/middlewares/requestValidate.middleware';
+import { UserRegisterSchema } from '@/schemas/User.schema';
 
 const router = Router();
 const authController = container.resolve(AuthController);

@@ -1,5 +1,5 @@
-import User from "../../models/user.model";
-import UserLoginSession from "../../models/userLoginSession.model";
+import User from "@/models/user.model";
+import UserLoginSession from "@/models/userLoginSession.model";
 
 export interface IAuthRepository {
   findUserByEmail(email: string): Promise<User | null>;

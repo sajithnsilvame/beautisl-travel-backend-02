@@ -1,6 +1,6 @@
 import { injectable, inject } from "tsyringe";
-import { UserRoleRepository } from "../repositories/userRole.repository";
-import Role from "../models/role.model";
+import { UserRoleRepository } from "@/repositories/userRole.repository";
+import Role from "@/models/role.model";
 
 @injectable()
 export class UserRoleService {

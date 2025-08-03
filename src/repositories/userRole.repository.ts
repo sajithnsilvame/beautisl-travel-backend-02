@@ -1,5 +1,5 @@
-import Role from "../models/role.model";
-import { IUserRoleRepository } from "../types/repo/IUserRoleRepository";
+import Role from "@/models/role.model";
+import { IUserRoleRepository } from "@/types/repo/IUserRoleRepository";
 
 export class UserRoleRepository implements IUserRoleRepository {
 

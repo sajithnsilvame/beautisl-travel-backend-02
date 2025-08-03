@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
-import { User } from '../models/user.model';
-import { verifyToken } from '../utils/jwt';
-import { AuthRepository } from '../repositories/auth.repository';
-import Role from '../models/role.model';
+import { User } from '@/models/user.model';
+import { verifyToken } from '@/utils/jwt';
+import { AuthRepository } from '@/repositories/auth.repository';
+import Role from '@/models/role.model';
 
 const authRepository = new AuthRepository();
 
