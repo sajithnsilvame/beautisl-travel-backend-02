@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "",
-    "database": "beatisltravel_db",
+    "database": "auth_api",
     "host": "localhost",
     "dialect": "mysql"
   },

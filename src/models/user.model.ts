@@ -1,7 +1,6 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../config/database';
 import Role from './role.model';
-import { Status } from '../enums/Global.enums';
 
 export class User extends Model {
   public id!: number;
@@ -11,10 +10,7 @@ export class User extends Model {
   public email!: string;
   public password!: string;
   public mobile!: string;
-  public image_url!: string;
-  public status!: Status;
   public roleId!: number;
-  
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
   public readonly Role?: Role;
@@ -77,15 +73,6 @@ User.init(
         },
       },
     },
-    image_url: {
-      type: DataTypes.STRING,
-      allowNull: true,
-      validate: {
-        isUrl: {
-          msg: 'Must be a valid URL.',
-        },
-      },
-    },
     password: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -94,14 +81,6 @@ User.init(
           args: [6, 100],
           msg: 'Password must be at least 6 characters long.',
         },
-      },
-    },
-    status: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      defaultValue: Status.ACTIVE,
-      validate: {
-        isIn: [[Status.ACTIVE, Status.INACTIVE]],
       },
     },
     createdAt: {

@@ -33,7 +33,7 @@ const userRoleController = container.resolve(UserRoleController);
  *       200:
  *         description: User role created successfully
  */
-router.post("/create", Authenticated, canAccess(['admin']), userRoleController.createUserRole.bind(userRoleController));
+router.post("/create", Authenticated, canAccess(['superadmin']), userRoleController.createUserRole.bind(userRoleController));
 
 /**
  * @swagger
@@ -48,7 +48,7 @@ router.post("/create", Authenticated, canAccess(['admin']), userRoleController.c
  *       200:
  *         description: Get all user roles
  */
-router.get('/get-all', Authenticated, canAccess(['admin']), userRoleController.getAllUserRoles.bind(userRoleController));
+router.get('/get-all', Authenticated, canAccess(['superadmin']), userRoleController.getAllUserRoles.bind(userRoleController));
 
 /**
  * @swagger
@@ -72,7 +72,7 @@ router.get('/get-all', Authenticated, canAccess(['admin']), userRoleController.g
  *       404:
  *         description: User role not found
  */
-router.get('/get/:id', Authenticated, canAccess(['admin']), userRoleController.getUserRoleById.bind(userRoleController));
+router.get('/get/:id', Authenticated, canAccess(['superadmin']), userRoleController.getUserRoleById.bind(userRoleController));
 
 /**
  * @swagger
@@ -107,7 +107,7 @@ router.get('/get/:id', Authenticated, canAccess(['admin']), userRoleController.g
  *       404:
  *         description: User role not found
  */
-router.put('/update/:id', Authenticated, canAccess(['admin']), userRoleController.updateUserRole.bind(userRoleController));
+router.put('/update/:id', Authenticated, canAccess(['superadmin']), userRoleController.updateUserRole.bind(userRoleController));
 
 /**
  * @swagger
@@ -131,6 +131,6 @@ router.put('/update/:id', Authenticated, canAccess(['admin']), userRoleControlle
  *       404:
  *         description: Todo not found
  */
-router.delete('/delete/:id', Authenticated, canAccess(['admin']), userRoleController.deleteUserRole.bind(userRoleController));
+router.delete('/delete/:id', Authenticated, canAccess(['superadmin']), userRoleController.deleteUserRole.bind(userRoleController));
 
 export default router;

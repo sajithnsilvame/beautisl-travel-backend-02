@@ -1,6 +1,5 @@
 import { QueryInterface } from 'sequelize';
 import bcrypt from 'bcrypt';
-import { UserRole } from '../enums/Global.enums';
 
 export default {
   up: async (queryInterface: QueryInterface) => {
@@ -10,20 +9,39 @@ export default {
     const hashedPassword4 = await bcrypt.hash('password101', 10);
 
     await queryInterface.bulkInsert('users', [
-     
       {
-        firstName: 'Sajith',
-        lastName: 'Silva',
+        firstName: 'John',
+        lastName: 'Smith',
+        username: 'superadmin',
+        email: 'superadmin@example.com',
+        password: hashedPassword1,
+        mobile: '0712457937',
+        roleId: 1, // superadmin role
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        firstName: 'John',
+        lastName: 'Smith',
         username: 'admin',
         email: 'admin@example.com',
         password: hashedPassword2,
         mobile: '0712457937',
-        roleId: UserRole.ADMIN, // admin role
-        status: 1,
+        roleId: 2, // admin role
         createdAt: new Date(),
         updatedAt: new Date(),
       },
-      
+      {
+        firstName: 'John',
+        lastName: 'Smith',
+        username: 'manager',
+        email: 'manager@example.com',
+        password: hashedPassword3,
+        mobile: '0712457937',
+        roleId: 3, // manager role
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
       {
         firstName: 'John',
         lastName: 'Smith',
@@ -31,8 +49,7 @@ export default {
         email: 'user@example.com',
         password: hashedPassword4,
         mobile: '0712457937',
-        roleId: UserRole.USER, // regular user role
-        status: 1,
+        roleId: 4, // regular user role
         createdAt: new Date(),
         updatedAt: new Date(),
       },

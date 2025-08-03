@@ -35,8 +35,6 @@ const authController = container.resolve(AuthController);
  *                 type: string
  *               mobile:
  *                 type: string
- *               image_url?:
- *                 type: string
  *     responses:
  *       201:
  *         description: User registered successfully
@@ -61,8 +59,6 @@ const authController = container.resolve(AuthController);
  *                     username:
  *                       type: string
  *                     mobile:
- *                       type: string
- *                     image_url:
  *                       type: string
  *                     roleId:
  *                       type: integer
@@ -116,8 +112,6 @@ router.post('/register', authLimiter, validateRequest(UserRegisterSchema), authC
  *                           type: string
  *                         mobile:
  *                           type: string
- *                         image_url:
- *                           type: string
  *                         roleId:
  *                            type: number
  */
@@ -166,10 +160,6 @@ router.post('/logout', Authenticated, authController.logout.bind(authController)
  *                       type: string
  *                     username:
  *                       type: string
- *                     image_url:
- *                       type: string
- *                     mobile:
- *                       type: string
  *                     roleId:
  *                       type: integer
  */
@@ -201,8 +191,6 @@ router.get('/user', Authenticated, authController.getAuthUser.bind(authControlle
  *                 type: string
  *               mobile:
  *                 type: string
- *               image_url:
- *                 type: string
  *     responses:
  *       200:
  *         description: User updated successfully
@@ -227,8 +215,6 @@ router.get('/user', Authenticated, authController.getAuthUser.bind(authControlle
  *                     username:
  *                       type: string
  *                     mobile:
- *                       type: string
- *                     image_url:
  *                       type: string
  *                     roleId:
  *                       type: integer

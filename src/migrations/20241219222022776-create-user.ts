@@ -1,5 +1,4 @@
 import { QueryInterface, DataTypes } from 'sequelize';
-import { Status, UserRole } from '../enums/Global.enums';
 
 export default {
   up: async (queryInterface: QueryInterface) => {
@@ -18,14 +17,9 @@ export default {
         type: DataTypes.STRING,
         allowNull: true,
       },
-      image_url: {
-        type: DataTypes.STRING,
-        allowNull: true,
-      },
       roleId: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        defaultValue: UserRole.USER,
         references: {
           model: 'user_roles',
           key: 'id'
@@ -54,14 +48,6 @@ export default {
         allowNull: true,
         validate: {
           len: [10, 15], // Mobile number length between 10 and 15 characters
-        },
-      },
-      status: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        defaultValue: Status.ACTIVE, // Assuming 1 is for active status
-        validate: {
-          isIn: [[1, 0]], // Assuming 1 is active and 0 is inactive
         },
       },
       password: {

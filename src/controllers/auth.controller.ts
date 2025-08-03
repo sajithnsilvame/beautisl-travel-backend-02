@@ -26,8 +26,8 @@ export class AuthController {
     Logger.info(`Received registration request from IP: ${req.ip}, Payload: ${JSON.stringify(req.body)}`);
 
     try {
-      const { firstName, lastName, username, email, password, mobile, image_url } = req.body;
-      const user = await this.authService.register(firstName, lastName, username, email, password, mobile, image_url);
+      const { firstName, lastName, username, email, password, mobile } = req.body;
+      const user = await this.authService.register(firstName, lastName, username, email, password, mobile);
 
       Logger.info(`Registration successful for user: ${user.email}`);
       res.status(201).json({
@@ -38,7 +38,6 @@ export class AuthController {
           lastName: user.lastName,
           email: user.email,
           username: user.username,
-          image_url: user.image_url,
           mobile: user.mobile,
           roleId: user.roleId,
         },

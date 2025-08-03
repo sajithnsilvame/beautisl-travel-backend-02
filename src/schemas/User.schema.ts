@@ -28,6 +28,4 @@ export const UserRegisterSchema = Joi.object({
             'string.length': 'Mobile number must be exactly 10 digits.',
             'string.pattern.base': 'Mobile number must contain only digits.',
         }),
-    image_url: Joi.string().optional()
-        
 });

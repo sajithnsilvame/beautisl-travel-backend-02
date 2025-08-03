@@ -51,7 +51,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 // Routes
-app.use('/api', routes);
+app.use(routes);
 
 // Default route (optional)
 app.get('/api', (req, res) => {

@@ -21,8 +21,7 @@ export class AuthRepository implements IAuthRepository {
     email: string;
     password: string;
     mobile: string;
-    image_url?: string;
-    roleId?: number;
+    roleId: number;
   }): Promise<User> {
     return await User.create(userData);
   }

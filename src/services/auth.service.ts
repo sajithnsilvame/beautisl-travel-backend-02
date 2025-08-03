@@ -3,7 +3,6 @@ import { generateToken } from "../utils/jwt";
 import { AuthRepository } from "../repositories/auth.repository";
 import { add } from 'date-fns';
 import { injectable, inject } from "tsyringe";
-import { UserRole } from "../enums/Global.enums";
 
 
 
@@ -20,7 +19,6 @@ export class AuthService {
    * @param email 
    * @param password 
    * @param mobile 
-   * @param image_url
    * @returns 
    */
   async register(
@@ -29,16 +27,16 @@ export class AuthService {
     username: string,
     email: string,
     password: string,
-    mobile: string,
-    image_url?: string
-  ): Promise<{ id: number; firstName: string; lastName: string; email: string; username: string; mobile: string; image_url: string; roleId: number }> {
+    mobile: string
+  ): Promise<{ id: number; firstName: string; lastName: string; email: string; username: string; mobile: string; roleId: number }> {
     const existingUser = await this.authRepository.findUserByEmail(email);
     if (existingUser) {
       throw new Error("User with this email already exists");
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-     
+    const defaultRoleId = 4; 
+
     const user = await this.authRepository.createUser({
       firstName,
       lastName,
@@ -46,8 +44,7 @@ export class AuthService {
       email,
       password: hashedPassword,
       mobile,
-      image_url,
-      roleId: UserRole.USER, // Default role as user
+      roleId: defaultRoleId,
     });
 
     return {
@@ -57,12 +54,11 @@ export class AuthService {
       email: user.email,
       username: user.username,
       mobile: user.mobile,
-      image_url: user.image_url || '',
       roleId: user.roleId,
     };
   }
 
-  async login(email: string, password: string): Promise<{ token: string; user: { id: number; firstName: string; lastName: string; email: string; username: string; mobile: string; image_url: string; roleId: number } }> {
+  async login(email: string, password: string): Promise<{ token: string; user: { id: number; firstName: string; lastName: string; email: string; username: string; mobile: string; roleId: number } }> {
     const user = await this.authRepository.findUserByEmail(email);
     if (!user) {
       throw new Error("Invalid email or password");
@@ -89,7 +85,6 @@ export class AuthService {
         email: user.email,
         username: user.username,
         mobile: user.mobile,
-        image_url: user.image_url || '',
         roleId: user.roleId
       },
     };

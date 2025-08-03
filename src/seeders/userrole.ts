@@ -1,19 +1,27 @@
 import { QueryInterface } from 'sequelize';
 
 const userRoles = [
-   
     {
-        role_name: 'admin',
-        description: 'Administrator with full access',
-        status: 1,
+        role_name: 'superadmin',
+        description: 'Super Administrator with full access',
         createdAt: new Date(),
         updatedAt: new Date(),
     },
-    
+    {
+        role_name: 'admin',
+        description: 'Administrator with limited access',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+    },
+    {
+        role_name: 'manager',
+        description: 'Manager with department access',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+    },
     {
         role_name: 'user',
         description: 'Regular user with basic access',
-        status: 1,
         createdAt: new Date(),
         updatedAt: new Date(),
     }

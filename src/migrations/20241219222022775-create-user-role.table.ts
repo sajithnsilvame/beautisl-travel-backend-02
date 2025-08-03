@@ -1,5 +1,4 @@
 import { QueryInterface, DataTypes } from 'sequelize';
-import { Status } from '../enums/Global.enums';
 
 export default {
   up: async (queryInterface: QueryInterface) => {
@@ -17,14 +16,6 @@ export default {
       description: {
         type: DataTypes.STRING,
         allowNull: true,
-      },
-      status: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        defaultValue: Status.ACTIVE, // Assuming 1 is for active status
-        validate: {
-          isIn: [[1, 0]], // Assuming 1 is active and 0 is inactive
-        },
       },
       createdAt: {
         type: DataTypes.DATE,

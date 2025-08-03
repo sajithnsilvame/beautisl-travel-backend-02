@@ -8,12 +8,16 @@ const options = {
     info: {
       title: process.env.APP_NAME || "API",
       version: "1.0.0",
-      description: "API documentation for the Todo application",
+      description: `${process.env.APP_NAME} documentation`,
     },
     servers: [
       {
-        url: "http://localhost:8000/api",
+        url: "http://localhost:8000/api/v1",
         description: "Local development server",
+      },
+      {
+        url: "https://localhost:8000/api/v1",
+        description: "production server",
       },
     ],
     components: {
