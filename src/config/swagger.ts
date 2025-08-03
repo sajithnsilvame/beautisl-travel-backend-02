@@ -1,22 +1,23 @@
 import swaggerJsdoc from "swagger-jsdoc";
-import dotenv from "dotenv";
-dotenv.config();
+import appConfig from "./app.config";
+
+const { app } = appConfig;
 
 const options = {
   definition: {
     openapi: "3.0.0",
     info: {
-      title: process.env.APP_NAME || "API",
-      version: "1.0.0",
-      description: `${process.env.APP_NAME} documentation`,
+      title: app.name,
+      version: app.version,
+      description: `${app.name} documentation`,
     },
     servers: [
       {
-        url: "http://localhost:8000/api/v1",
+        url: `http://localhost:${app.port}/api/v1`,
         description: "Local development server",
       },
       {
-        url: "https://localhost:8000/api/v1",
+        url: `https://localhost:${app.port}/api/v1`,
         description: "production server",
       },
     ],

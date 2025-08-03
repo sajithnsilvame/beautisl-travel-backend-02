@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
+import appConfig from '../config/app.config';
 
-const SECRET_KEY = process.env.JWT_SECRET || 'your-secret-key';
+const SECRET_KEY = appConfig.jwt.secret;
 
 export const generateToken = (payload: object): string => {
   const sessionId = Math.random().toString(36).substring(2); // Generate unique session ID

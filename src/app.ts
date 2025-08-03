@@ -6,24 +6,21 @@ import swaggerDocument from './config/swagger';
 import routes from './routes/index';
 import connectToDatabase from './config/database';
 import { errorHandler } from './middlewares/error.middleware';
-import dotenv from 'dotenv';
+import appConfig from './config/app.config';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import morganMiddleware from './middlewares/logger.middleware';
 import cors from 'cors';
 import { apiLimiter } from "./middlewares/rateLimit.middleware";
 
-// Load environment variables
-dotenv.config();
-
 const app = express();
-const PORT = process.env.PORT || 3000;
+const { app: appSettings, cors: corsSettings, swagger } = appConfig;
 
 // CORS middleware
 const corsOptions = {
-  origin: process.env.CLIENT_ORIGIN || '*', // Allow all origins or specify the frontend's URL
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify allowed methods
-  allowedHeaders: ['Content-Type', 'Authorization'], // Allow specific headers
+  origin: corsSettings.origin,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
 };
 
 app.use(cors(corsOptions)); // Use CORS middleware
@@ -35,7 +32,7 @@ app.use(helmet());
 app.use(morganMiddleware);
 
 // Request logging middleware
-if (process.env.NODE_ENV === 'development') {
+if (appSettings.nodeEnv === 'development') {
     app.use(morgan('dev')); // Logs: :method :url :status :response-time ms
 } else {
     app.use(morgan('combined')); // More detailed logging for production
@@ -45,8 +42,8 @@ app.use(apiLimiter);
 
 // Middleware
 app.use(json());
-if (process.env.NODE_ENV === 'development') {
-    app.use(process.env.SWAGGER_URL || '/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+if (appSettings.nodeEnv === 'development') {
+    app.use(swagger.url, swaggerUi.serve, swaggerUi.setup(swaggerDocument));
     
 }
 
@@ -64,12 +61,12 @@ app.use(errorHandler);
 // Database connection
 connectToDatabase.authenticate()
   .then(() => {
-    app.listen(PORT, () => {
-      console.log('Connected to database');
-      console.log(`Server is running on http://localhost:${PORT}/api`);
-      console.log(`Swagger docs available at http://localhost:${PORT}${process.env.SWAGGER_URL || '/api-docs'}`);
+    app.listen(appSettings.port, () => {
+      console.log('✅ Connected to database');
+      console.log(`🔰 Server is running on 👉 http://localhost:${appSettings.port}/api`);
+      console.log(`🔰 Swagger docs available at 👉 http://localhost:${appSettings.port}${swagger.url}`);
     });
   })
   .catch(err => {
-    console.error('Database connection failed:', err);
+    console.error('❌ Database connection failed:', err);
   });

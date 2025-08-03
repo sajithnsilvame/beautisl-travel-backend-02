@@ -1,6 +1,7 @@
 import winston from 'winston';
 import DailyRotateFile from 'winston-daily-rotate-file';
 import path from 'path';
+import appConfig from '../config/app.config';
 
 const levels = {
   error: 0,
@@ -11,8 +12,7 @@ const levels = {
 };
 
 const level = () => {
-  const env = process.env.NODE_ENV || 'development';
-  return env === 'development' ? 'debug' : 'warn';
+  return appConfig.app.nodeEnv === 'development' ? 'debug' : 'warn';
 };
 
 const format = winston.format.combine(

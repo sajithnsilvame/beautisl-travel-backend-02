@@ -1,13 +1,11 @@
 import rateLimit from 'express-rate-limit';
-import dotenv from 'dotenv';
+import appConfig from '../config/app.config';
 
-dotenv.config();
+const { rateLimit: rateLimitConfig } = appConfig;
 
 export const apiLimiter = rateLimit({
-    windowMs: process.env.RATE_LIMIT_WINDOW_MS
-        ? parseInt(process.env.RATE_LIMIT_WINDOW_MS)
-        : 15 * 60 * 1000, // Default: 15 minutes
-    max: process.env.RATE_LIMIT_MAX ? parseInt(process.env.RATE_LIMIT_MAX) : 100, // Default: 100 requests
+    windowMs: rateLimitConfig.windowMs,
+    max: rateLimitConfig.max,
     standardHeaders: true, // Return rate limit info in the RateLimit-* headers
     legacyHeaders: false,  // Disable the X-RateLimit-* headers
     message: 'Too many requests from this IP, please try again later.',

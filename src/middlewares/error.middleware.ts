@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { AppError } from '../utils/errors/AppError';
+import appConfig from '../config/app.config';
 
 export const errorHandler = (
   err: Error | AppError,
@@ -7,7 +8,7 @@ export const errorHandler = (
   res: Response,
   next: NextFunction
 ): void => {
-  const isDevelopment = process.env.NODE_ENV === 'development';
+  const isDevelopment = appConfig.app.nodeEnv === 'development';
 
   // Check if the error is an instance of AppError
   if (err instanceof AppError) {
