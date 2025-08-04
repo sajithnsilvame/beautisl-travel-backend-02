@@ -81,9 +81,9 @@ Tour.init({
         allowNull: true,
     },
     status: {
-        type: DataTypes.ENUM('active', 'inactive', 'draft', 'deleted', 'popular', 'unpopular'),
+        type: DataTypes.ENUM(...Object.values(StatusEnum)),
         allowNull: false,
-        defaultValue: 'active',
+        defaultValue: StatusEnum.ACTIVE,
     },    
 }, {
     sequelize,

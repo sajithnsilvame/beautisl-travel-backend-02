@@ -114,7 +114,7 @@ router.post('/register', authLimiter, validateRequest(UserRegisterSchema), authC
  *             properties:
  *               email:
  *                 type: string
- *                 example: "user@example.com"
+ *                 example: "superadmin@example.com"
  *               password:
  *                 type: string
  *                 example: "password123"

@@ -1,5 +1,6 @@
 import "reflect-metadata";
 import "module-alias/register";
+import "@/di-container";
 import express from 'express';
 import { json } from 'body-parser';
 import swaggerUi from 'swagger-ui-express';

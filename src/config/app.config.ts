@@ -88,7 +88,7 @@ const appConfig: AppConfig = {
     max: Number(process.env.RATE_LIMIT_MAX) || 100,
   },
   cors: {
-    origin: process.env.CLIENT_ORIGIN || '*',
+    origin: '*',
   },
 };
 
